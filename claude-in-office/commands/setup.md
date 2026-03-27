@@ -78,7 +78,9 @@ gcloud services enable aiplatform.googleapis.com --project=<PROJECT_ID>
 
 Capture: `gcp_project_id`, `gcp_region`, `google_client_id`, `google_client_secret`.
 
-Continue to [Step 2](#step-2--azure-admin-consent).
+Continue to [Step 3](#step-3--decide-whats-org-wide-vs-per-user). Vertex uses
+Google OAuth, not Entra, so admin consent isn't needed unless you also opt into
+per-user config (in which case come back to Step 2 after deciding in Step 3).
 
 ---
 
@@ -169,11 +171,17 @@ instead of the manifest.
 
 Capture: `gateway_url`, `gateway_token`.
 
-Continue to [Step 2](#step-2--azure-admin-consent).
+Continue to [Step 3](#step-3--decide-whats-org-wide-vs-per-user). Gateway auth
+is token-based, not Entra, so admin consent isn't needed unless you also opt
+into per-user config (in which case come back to Step 2 after deciding in Step 3).
 
 ---
 
 ## Step 2 — Azure admin consent
+
+**Only required when `entra_sso=1`** — that is, Bedrock (the Entra token is the
+STS web identity) or per-user config via extension attrs/bootstrap. If neither
+applies, skip to Step 3.
 
 Read `${CLAUDE_PLUGIN_ROOT}/commands/consent.md` and follow it.
 

@@ -1,8 +1,11 @@
 ---
-description: Azure admin consent URL — one-time tenant approval before users can sign in
+description: Azure admin consent URL — one-time tenant approval for Entra SSO
 ---
 
 # Azure admin consent
+
+**Only needed when `entra_sso=1`** in the manifest. Gateway and Vertex setups
+with org-wide config don't use Entra and can skip this.
 
 One-time per tenant. A Global Admin opens this URL, clicks Accept, done. Until
 they do, NAA sign-in inside the add-in fails for every user in the tenant.
